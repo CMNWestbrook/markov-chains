@@ -1,4 +1,4 @@
-from random import choice
+import random
 
 
 def open_and_read_file(file_path):
@@ -41,14 +41,40 @@ def make_chains(text_string):
 
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
+    """
+    link = random key from chains + random value from the random key
+    add link to text
+    repeat:
+    new_link = second key from link + random value from second key
 
-    key = random.choice(chains.keys())
-    print key
+    """
 
+    # initialize empty list to store markov words
+    words = []
 
-    text = ""
+    # get first two words of markov words (randomly)
+    new_link = random.choice(chains.keys())
 
-    
+    # unpack new_link tuple to add to words
+    word1, word2 = new_link
+
+    # start markov text with first two words
+    words = [word1, word2]  # ['would', 'you']
+
+    while new_link in chains:
+
+        # choose the next word randomly
+        word3 = random.choice(chains[new_link])
+
+        # add new word to list of markov text
+        words.append(word3)
+
+        # reassign words for new key
+        word1 = word2
+        word2 = word3
+        new_link = (word1, word2)
+   
+    text = ' '.join(words)
 
     return text
 
