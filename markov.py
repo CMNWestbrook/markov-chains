@@ -1,5 +1,6 @@
-import random
 
+import sys
+import random
 
 def open_and_read_file(file_path):
     """Takes file path as string; returns text as string.
@@ -7,8 +8,8 @@ def open_and_read_file(file_path):
     Takes a string that is a file path, opens the file, and turns
     the file's contents as one string of text.
     """
-    input_path = open(file_path)
-    input_text = file.read(input_path)
+    open_file = open(file_path)
+    input_text = open_file.read()
     return input_text
 
 
@@ -40,13 +41,7 @@ def make_chains(text_string):
 
 
 def make_text(chains):
-    """Takes dictionary of markov chains; returns random text."""
-    """
-    link = random key from chains + random value from the random key
-    add link to text
-    repeat:
-    new_link = second key from link + random value from second key
-
+    """Takes dictionary of markov chains; returns random text.
     """
 
     # initialize empty list to store markov words
@@ -79,7 +74,7 @@ def make_text(chains):
     return text
 
 
-input_path = "green-eggs.txt"
+input_path = sys.argv[1]
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
