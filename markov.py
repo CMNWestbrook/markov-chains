@@ -42,6 +42,10 @@ def make_chains(text_string):
 def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
 
+    key = random.choice(chains.keys())
+    print key
+
+
     text = ""
 
     
