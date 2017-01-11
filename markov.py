@@ -8,8 +8,9 @@ def open_and_read_file(file_path):
     the file's contents as one string of text.
     """
     input_path = open(file_path)
-    input_text = file.read(input_path) 
+    input_text = file.read(input_path)
     return input_text
+
 
 def make_chains(text_string):
     """Takes input text as string; returns _dictionary_ of markov chains.
@@ -21,17 +22,21 @@ def make_chains(text_string):
     For example:
 
         >>> make_chains("hi there mary hi there juanita")
-        {('hi', 'there'): ['mary', 'juanita'], ('there', 'mary'): ['hi'], 
+        {('hi', 'there'): ['mary', 'juanita'], ('there', 'mary'): ['hi'],
         ('mary', 'hi': ['there']}
     """
     text_string = input_text.split()
     chains = {}
 
-    for i in range(len(text_string)-2):
+    for i in range(len(text_string) - 2):
         key = (text_string[i], text_string[i + 1])
-        chains[key] = [text_string[i + 2]]
 
-    print chains
+        if key in chains:
+            chains[key].append(text_string[i + 2])
+        else:
+            chains[key] = [text_string[i + 2]]
+
+    return chains
 
 
 def make_text(chains):
@@ -39,7 +44,7 @@ def make_text(chains):
 
     text = ""
 
-    # your code goes here
+    
 
     return text
 
@@ -53,6 +58,6 @@ input_text = open_and_read_file(input_path)
 chains = make_chains(input_text)
 
 # Produce random text
-#random_text = make_text(chains)
+random_text = make_text(chains)
 
-#print random_text
+print random_text
