@@ -48,8 +48,22 @@ def make_text(chains):
     words = []
 
     # get first two words of markov words (randomly)
+
+    # get random key
+    # if random key begins with capital letter:
+    #     random key is fine
+    # elif random key does not begin with capital letter:
+    #     get new random key
     new_link = random.choice(chains.keys())
 
+    if new_link[0].isupper():
+        pass
+    else:
+        new_link = random.choice(chains.keys())
+
+    # while new_link[0].isupper() != True:
+    #     new_link = random.choice(chains.keys())
+    # print 'hi'
     # unpack new_link tuple to add to words
     word1, word2 = new_link
 
